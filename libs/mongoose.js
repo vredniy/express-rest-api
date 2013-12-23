@@ -15,9 +15,17 @@ db.once('open', function callback () {
 
 var Schema = mongoose.Schema;
 
+
 var PlaceSchema = new Schema({
   name: { type: String, required: true }
 });
+
+PlaceSchema.virtual('id').get(function() {
+  return this._id.toHexString();
+});
+
+// Ensure virtual fields are serialised.
+PlaceSchema.set('toJSON', { virtuals: true });
 
 var Place = mongoose.model('Place', PlaceSchema);
 

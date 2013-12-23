@@ -11,7 +11,7 @@ exports.index = function(req, res){
       console.log('Internal error(%d): %s', res.statusCode, err.message);
       return res.send({ error: 'Server error' });
     } else {
-      return res.send(places);
+      return res.send({ places: places });
     }
   });
 
